@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/screens/pantalla_carrito.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1762037442307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762037478357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import 'package:app/models/articulo_carrito.dart';\n-import 'package:app/data/datos_ejemplo.dart';\n+import '/models/articulo_carrito.dart';\n+import '/data/datos_ejemplo.dart';\n import 'package:flutter/material.dart';\n \n // Pantalla que muestra el contenido del carrito de compras.\n class PantallaCarrito extends StatefulWidget {\n-  const PantallaCarrito({Key? key}) : super(key: key);\n+  const PantallaCarrito({super.key});\n \n   @override\n   _PantallaCarritoState createState() => _PantallaCarritoState();\n }\n"
+                }
+            ],
+            "date": 1762037442307,
+            "name": "Commit-0",
+            "content": "import 'package:app/models/articulo_carrito.dart';\nimport 'package:app/data/datos_ejemplo.dart';\nimport 'package:flutter/material.dart';\n\n// Pantalla que muestra el contenido del carrito de compras.\nclass PantallaCarrito extends StatefulWidget {\n  const PantallaCarrito({Key? key}) : super(key: key);\n\n  @override\n  _PantallaCarritoState createState() => _PantallaCarritoState();\n}\n\nclass _PantallaCarritoState extends State<PantallaCarrito> {\n  // Datos de ejemplo para el carrito\n  final List<ArticuloCarrito> _articulosCarrito = [\n    ArticuloCarrito(producto: productosEjemplo[0], cantidad: 2),\n    ArticuloCarrito(producto: productosEjemplo[1], cantidad: 1),\n  ];\n\n  // Calcula el precio total de los artículos en el carrito.\n  double get _precioTotal {\n    return _articulosCarrito.fold(0, (sum, item) => sum + (item.producto.precio * item.cantidad));\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(\n        title: const Text('Mi Carrito'),\n      ),\n      body: Column(\n        children: [\n          Expanded(\n            child: ListView.builder(\n              itemCount: _articulosCarrito.length,\n              itemBuilder: (context, index) {\n                final item = _articulosCarrito[index];\n                return ListTile(\n                  leading: Image.network(item.producto.imagenUrl, width: 50, height: 50, fit: BoxFit.cover),\n                  title: Text(item.producto.nombre),\n                  subtitle: Text('Cantidad: ${item.cantidad}'),\n                  trailing: Row(\n                    mainAxisSize: MainAxisSize.min,\n                    children: [\n                      Text('\\$${(item.producto.precio * item.cantidad).toStringAsFixed(2)}'),\n                      IconButton(\n                        icon: const Icon(Icons.delete, color: Colors.red),\n                        onPressed: () {\n                          // La lógica para eliminar se implementará en la Fase 2.\n                        },\n                      ),\n                    ],\n                  ),\n                );\n              },\n            ),\n          ),\n          // Muestra el resumen del precio total.\n          Padding(\n            padding: const EdgeInsets.all(16.0),\n            child: Row(\n              mainAxisAlignment: MainAxisAlignment.spaceBetween,\n              children: [\n                Text(\n                  'Total:',\n                  style: Theme.of(context).textTheme.headlineSmall,\n                ),\n                Text(\n                  '\\$${_precioTotal.toStringAsFixed(2)}',\n                  style: Theme.of(context).textTheme.headlineSmall,\n                ),\n              ],\n            ),\n          ),\n          // Botón para aprobar el pedido.\n          Padding(\n            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),\n            child: SizedBox(\n              width: double.infinity,\n              child: ElevatedButton(\n                onPressed: () {\n                  // La lógica de aprobación se implementará en fases posteriores.\n                },\n                child: const Text('Aprobar Pedido'),\n              ),\n            ),\n          ),\n        ],\n      ),\n    );\n  }\n}\n"
+        }
+    ]
+}

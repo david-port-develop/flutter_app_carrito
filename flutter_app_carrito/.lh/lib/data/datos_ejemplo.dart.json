@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/data/datos_ejemplo.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1762037571413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762037848347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n   ),\n   Producto(\n     nombre: 'Vaqueros',\n     precio: 50.0,\n-    imagenUrl: 'https://images.unsplash.com/photo-1602293589914-9FF0554d6b0c',\n+    imagenUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27',\n   ),\n   Producto(\n     nombre: 'Zapatos',\n     precio: 80.0,\n-    imagenUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ab',\n+    imagenUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27',\n   ),\n   Producto(\n     nombre: 'Sombrero',\n     precio: 15.0,\n-    imagenUrl: 'https://images.unsplash.com/photo-1529958030586-3aae4ca485ff',\n+    imagenUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27',\n   ),\n ];\n"
+                }
+            ],
+            "date": 1762037571413,
+            "name": "Commit-0",
+            "content": "import '/models/producto.dart';\n\n// Lista de productos de ejemplo para poblar la interfaz.\nfinal List<Producto> productosEjemplo = [\n  Producto(\n    nombre: 'Camiseta',\n    precio: 25.0,\n    imagenUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27',\n  ),\n  Producto(\n    nombre: 'Vaqueros',\n    precio: 50.0,\n    imagenUrl: 'https://images.unsplash.com/photo-1602293589914-9FF0554d6b0c',\n  ),\n  Producto(\n    nombre: 'Zapatos',\n    precio: 80.0,\n    imagenUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ab',\n  ),\n  Producto(\n    nombre: 'Sombrero',\n    precio: 15.0,\n    imagenUrl: 'https://images.unsplash.com/photo-1529958030586-3aae4ca485ff',\n  ),\n];\n"
+        }
+    ]
+}

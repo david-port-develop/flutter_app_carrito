@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/main.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1762037660745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1762037660745,
+            "name": "Commit-0",
+            "content": "import '/screens/pantalla_inicio.dart';\nimport 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(const MiTiendaApp());\n}\n\nclass MiTiendaApp extends StatelessWidget {\n  const MiTiendaApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      title: 'App de Compras',\n      theme: ThemeData(primarySwatch: Colors.blue),\n      home: const PantallaInicio(),\n    );\n  }\n}\n"
+        }
+    ]
+}
