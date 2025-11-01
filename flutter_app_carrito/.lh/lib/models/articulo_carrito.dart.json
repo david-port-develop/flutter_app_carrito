@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/models/articulo_carrito.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1762037176769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762037207735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import 'package:app/models/producto.dart';\n+import 'producto.dart';\n \n // Define un artículo dentro del carrito de compras.\n // Contiene el producto y la cantidad de unidades de ese producto.\n class ArticuloCarrito {\n"
+                }
+            ],
+            "date": 1762037176769,
+            "name": "Commit-0",
+            "content": "import 'package:app/models/producto.dart';\n\n// Define un artículo dentro del carrito de compras.\n// Contiene el producto y la cantidad de unidades de ese producto.\nclass ArticuloCarrito {\n  final Producto producto;\n  int cantidad;\n\n  ArticuloCarrito({\n    required this.producto,\n    this.cantidad = 1,\n  });\n}\n"
+        }
+    ]
+}
