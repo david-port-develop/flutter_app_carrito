@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/providers/carrito_provider.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1762070870525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762070960796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,12 @@\n   }\n \n   // Getter para calcular el precio total del carrito.\n   double get precioTotal {\n-    return _articulos.values.fold(0, (sum, item) => sum + (item.producto.precio * item.cantidad));\n+    return _articulos.values.fold(\n+      0,\n+      (sum, item) => sum + (item.producto.precio * item.cantidad),\n+    );\n   }\n \n   // Método para añadir un producto al carrito.\n   void anadirProducto(Producto producto) {\n@@ -66,5 +69,5 @@\n       _articulos.remove(nombreProducto);\n     }\n     notifyListeners();\n   }\n-}\n\\ No newline at end of file\n+}\n"
+                }
+            ],
+            "date": 1762070870525,
+            "name": "Commit-0",
+            "content": "import '/models/articulo_carrito.dart';\nimport '/models/producto.dart';\nimport 'package:flutter/material.dart';\n\n// Gestiona el estado del carrito de compras.\n// Utiliza ChangeNotifier para notificar a los widgets cuando hay cambios.\nclass CarritoProvider with ChangeNotifier {\n  // Mapa para almacenar los artículos del carrito, usando el nombre del producto como clave.\n  final Map<String, ArticuloCarrito> _articulos = {};\n\n  // Getter para acceder a la lista de artículos del carrito.\n  List<ArticuloCarrito> get articulos => _articulos.values.toList();\n\n  // Getter para calcular el número total de artículos en el carrito.\n  int get numeroDeArticulos {\n    return _articulos.values.fold(0, (sum, item) => sum + item.cantidad);\n  }\n\n  // Getter para calcular el precio total del carrito.\n  double get precioTotal {\n    return _articulos.values.fold(0, (sum, item) => sum + (item.producto.precio * item.cantidad));\n  }\n\n  // Método para añadir un producto al carrito.\n  void anadirProducto(Producto producto) {\n    if (_articulos.containsKey(producto.nombre)) {\n      // Si el producto ya está en el carrito, incrementa la cantidad.\n      _articulos.update(\n        producto.nombre,\n        (articuloExistente) => ArticuloCarrito(\n          producto: articuloExistente.producto,\n          cantidad: articuloExistente.cantidad + 1,\n        ),\n      );\n    } else {\n      // Si es un producto nuevo, lo añade al carrito.\n      _articulos.putIfAbsent(\n        producto.nombre,\n        () => ArticuloCarrito(producto: producto, cantidad: 1),\n      );\n    }\n    // Notifica a los widgets que escuchan para que se reconstruyan.\n    notifyListeners();\n  }\n\n  // Método para eliminar un artículo completo del carrito.\n  void eliminarArticulo(String nombreProducto) {\n    _articulos.remove(nombreProducto);\n    notifyListeners();\n  }\n\n  // Método para reducir la cantidad de un artículo en uno.\n  // Si la cantidad llega a cero, el artículo se elimina.\n  void reducirCantidad(String nombreProducto) {\n    if (!_articulos.containsKey(nombreProducto)) return;\n\n    if (_articulos[nombreProducto]!.cantidad > 1) {\n      _articulos.update(\n        nombreProducto,\n        (articuloExistente) => ArticuloCarrito(\n          producto: articuloExistente.producto,\n          cantidad: articuloExistente.cantidad - 1,\n        ),\n      );\n    } else {\n      _articulos.remove(nombreProducto);\n    }\n    notifyListeners();\n  }\n}"
+        }
+    ]
+}

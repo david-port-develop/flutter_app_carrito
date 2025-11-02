@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1762037660745,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762070870529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \n   @override\n   Widget build(BuildContext context) {\n     return MaterialApp(\n-      title: 'App de Compras',\n+      title: 'Mi tienda virtual',\n       theme: ThemeData(primarySwatch: Colors.blue),\n       home: const PantallaInicio(),\n     );\n   }\n"
+                },
+                {
+                    "date": 1762072434784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,31 @@\n import '/screens/pantalla_inicio.dart';\n import 'package:flutter/material.dart';\n \n+\n+import '/providers/carrito_provider.dart';\n+import 'package:provider/provider.dart';\n+\n void main() {\n   runApp(const MiTiendaApp());\n }\n \n+\n class MiTiendaApp extends StatelessWidget {\n   const MiTiendaApp({super.key});\n \n   @override\n   Widget build(BuildContext context) {\n-    return MaterialApp(\n-      title: 'Mi tienda virtual',\n-      theme: ThemeData(primarySwatch: Colors.blue),\n-      home: const PantallaInicio(),\n+    // Usamos ChangeNotifierProvider para que el estado del carrito\n+    // esté disponible en toda la aplicación.\n+    return ChangeNotifierProvider(\n+      create: (context) => CarritoProvider(),\n+      child: MaterialApp(\n+        title: 'Mi tienda',\n+        theme: ThemeData(\n+          primarySwatch: Colors.blue,\n+        ),\n+        home: const PantallaInicio(),\n+      ),\n     );\n   }\n-}\n+}\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1762037660745,
