@@ -1,0 +1,26 @@
+{
+    "sourceFile": "flutter_app_carrito/lib/widgets/app_bar_comun.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1763719076804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1763719370104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import 'package:flutter/material.dart';\n-import '/screens/pantalla_carrito.dart';\n-import '/screens/pantalla_inicio.dart';\n+import 'package:go_router/go_router.dart';\n \n // Un AppBar reutilizable para mantener la consistencia en la app.\n class AppBarComun extends StatelessWidget implements PreferredSizeWidget {\n   const AppBarComun({super.key});\n@@ -15,14 +14,9 @@\n         // Icono para navegar a la pantalla de inicio.\n         IconButton(\n           icon: const Icon(Icons.home),\n           onPressed: () {\n-            // Evita añadir rutas duplicadas si ya estamos en el inicio.\n-            if (ModalRoute.of(context)?.settings.name != '/') {\n-              Navigator.of(context).pushReplacement(\n-                MaterialPageRoute(builder: (context) => const PantallaInicio()),\n-              );\n-            }\n+            context.go('/');\n           },\n         ),\n         // Icono del carrito de compras con un contador.\n         IconButton(\n@@ -49,11 +43,9 @@\n                 ),\n               ),\n             ],\n           ),\n-          onPressed: () => Navigator.of(context).push(\n-            MaterialPageRoute(builder: (context) => const PantallaCarrito()),\n-          ),\n+          onPressed: () => context.push('/carrito'),\n         ),\n       ],\n     );\n   }\n"
+                },
+                {
+                    "date": 1763719501585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n \n   @override\n   Widget build(BuildContext context) {\n     return AppBar(\n+      // Evita que aparezca la flecha de 'atrás' automáticamente.\n+      automaticallyImplyLeading: false,\n       // El título se alinea a la izquierda por defecto.\n       title: const Text('Mi Tienda'),\n       actions: [\n         // Icono para navegar a la pantalla de inicio.\n"
+                }
+            ],
+            "date": 1763719076804,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\nimport '/screens/pantalla_carrito.dart';\nimport '/screens/pantalla_inicio.dart';\n\n// Un AppBar reutilizable para mantener la consistencia en la app.\nclass AppBarComun extends StatelessWidget implements PreferredSizeWidget {\n  const AppBarComun({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return AppBar(\n      // El título se alinea a la izquierda por defecto.\n      title: const Text('Mi Tienda'),\n      actions: [\n        // Icono para navegar a la pantalla de inicio.\n        IconButton(\n          icon: const Icon(Icons.home),\n          onPressed: () {\n            // Evita añadir rutas duplicadas si ya estamos en el inicio.\n            if (ModalRoute.of(context)?.settings.name != '/') {\n              Navigator.of(context).pushReplacement(\n                MaterialPageRoute(builder: (context) => const PantallaInicio()),\n              );\n            }\n          },\n        ),\n        // Icono del carrito de compras con un contador.\n        IconButton(\n          icon: Stack(\n            children: [\n              const Icon(Icons.shopping_cart),\n              Positioned(\n                right: 0,\n                child: Container(\n                  padding: const EdgeInsets.all(1),\n                  decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(10)),\n                  constraints: const BoxConstraints(minWidth: 16, minHeight: 16),\n                  child: const Text('0', style: TextStyle(color: Colors.white, fontSize: 10), textAlign: TextAlign.center),\n                ),\n              ),\n            ],\n          ),\n          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PantallaCarrito())),\n        ),\n      ],\n    );\n  }\n\n  @override\n  Size get preferredSize => const Size.fromHeight(kToolbarHeight);\n}"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 import '/data/datos_ejemplo.dart';
-import '/screens/pantalla_carrito.dart';
+import '/widgets/app_bar_comun.dart';
 import '/widgets/ficha_producto.dart';
 import 'package:flutter/material.dart';
 
@@ -10,49 +10,11 @@ class PantallaInicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mi Tienda'),
-        actions: [
-          IconButton(
-            icon: Stack(
-              children: [
-                const Icon(Icons.shopping_cart),
-                Positioned(
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: const Text(
-                      '0', // Valor de ejemplo
-                      style: TextStyle(color: Colors.white, fontSize: 10),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {
-              // Navega a la pantalla del carrito al pulsar el icono.
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const PantallaCarrito(),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: const AppBarComun(),
       body: GridView.builder(
         padding: const EdgeInsets.all(8.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Dos columnas
+          crossAxisCount: 3, // Tres columnas
           childAspectRatio: 2 / 3,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,

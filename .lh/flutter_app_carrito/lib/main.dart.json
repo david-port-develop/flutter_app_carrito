@@ -1,0 +1,22 @@
+{
+    "sourceFile": "flutter_app_carrito/lib/main.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1763719354732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1763807469909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import '/router/app_router.dart';\n import 'package:flutter/material.dart';\n+import 'package:google_fonts/google_fonts.dart';\n \n void main() {\n   runApp(const MiTiendaApp());\n }\n@@ -11,9 +12,51 @@\n   @override\n   Widget build(BuildContext context) {\n     return MaterialApp.router(\n       title: 'App de Compras',\n-      theme: ThemeData(primarySwatch: Colors.blue),\n+      theme: _buildTheme(context),\n       routerConfig: appRouter,\n     );\n   }\n+\n+  ThemeData _buildTheme(BuildContext context) {\n+    const primaryColor = Color(0xFF3D5A80); // Azul oscuro\n+    const secondaryColor = Color(0xFFEE6C4D); // Naranja coral como acento\n+    const backgroundColor = Color(0xFFF4F4F8); // Gris claro para el fondo\n+\n+    return ThemeData(\n+      useMaterial3: true,\n+      primaryColor: primaryColor,\n+      scaffoldBackgroundColor: backgroundColor,\n+      // Define la paleta de colores general\n+      colorScheme: ColorScheme.fromSeed(\n+        seedColor: primaryColor,\n+        secondary: secondaryColor,\n+        background: backgroundColor,\n+        brightness: Brightness.light,\n+      ),\n+      // Define la tipografía para toda la app\n+      textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),\n+      // Estilo para el AppBar\n+      appBarTheme: AppBarTheme(\n+        backgroundColor: primaryColor,\n+        foregroundColor: Colors.white, // Color para el título y los iconos\n+        elevation: 2,\n+        titleTextStyle: GoogleFonts.montserrat(\n+          fontSize: 20,\n+          fontWeight: FontWeight.w600,\n+        ),\n+      ),\n+      // Estilo para los botones elevados\n+      elevatedButtonTheme: ElevatedButtonThemeData(\n+        style: ElevatedButton.styleFrom(\n+          backgroundColor: secondaryColor, // Color de fondo del botón\n+          foregroundColor: Colors.white, // Color del texto del botón\n+          shape: RoundedRectangleBorder(\n+            borderRadius: BorderRadius.circular(12),\n+          ),\n+          padding: const EdgeInsets.symmetric(vertical: 16),\n+        ),\n+      ),\n+    );\n+  }\n }\n"
+                }
+            ],
+            "date": 1763719354732,
+            "name": "Commit-0",
+            "content": "import '/router/app_router.dart';\nimport 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(const MiTiendaApp());\n}\n\nclass MiTiendaApp extends StatelessWidget {\n  const MiTiendaApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp.router(\n      title: 'App de Compras',\n      theme: ThemeData(primarySwatch: Colors.blue),\n      routerConfig: appRouter,\n    );\n  }\n}\n"
+        }
+    ]
+}

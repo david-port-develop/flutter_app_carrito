@@ -1,5 +1,6 @@
-import '/models/articulo_carrito.dart';
-import '/data/datos_ejemplo.dart';
+import '../models/articulo_carrito.dart';
+import '../data/datos_ejemplo.dart';
+import '../widgets/app_bar_comun.dart';
 import 'package:flutter/material.dart';
 
 // Pantalla que muestra el contenido del carrito de compras.
@@ -7,7 +8,7 @@ class PantallaCarrito extends StatefulWidget {
   const PantallaCarrito({super.key});
 
   @override
-  _PantallaCarritoState createState() => _PantallaCarritoState();
+  State<PantallaCarrito> createState() => _PantallaCarritoState();
 }
 
 class _PantallaCarritoState extends State<PantallaCarrito> {
@@ -28,7 +29,7 @@ class _PantallaCarritoState extends State<PantallaCarrito> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mi Carrito')),
+      appBar: const AppBarComun(),
       body: Column(
         children: [
           Expanded(
