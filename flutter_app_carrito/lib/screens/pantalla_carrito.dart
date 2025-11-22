@@ -1,65 +1,40 @@
-import '../models/articulo_carrito.dart';
-import '../models/producto.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../providers/carrito_provider.dart';
 import '../widgets/app_bar_comun.dart';
 import 'package:flutter/material.dart';
 
 // Pantalla que muestra el contenido del carrito de compras.
-class PantallaCarrito extends StatefulWidget {
+class PantallaCarrito extends ConsumerWidget {
   const PantallaCarrito({super.key});
 
   @override
-  State<PantallaCarrito> createState() => _PantallaCarritoState();
-}
-
-class _PantallaCarritoState extends State<PantallaCarrito> {
-  // Datos de ejemplo para el carrito
-  final List<ArticuloCarrito> _articulosCarrito = [
-    ArticuloCarrito(
-      producto: Producto(
-        nombre: 'Camiseta Clásica',
-        precio: 19.99,
-        descripcion: 'Camiseta de algodón 100% de alta calidad.',
-        imagenUrl: 'https://picsum.photos/seed/picsum1/400/400',
-      ),
-      cantidad: 2,
-    ),
-    ArticuloCarrito(
-      producto: Producto(
-        nombre: 'Vaqueros Slim Fit',
-        precio: 49.99,
-        descripcion: 'Vaqueros modernos y cómodos para cualquier ocasión.',
-        imagenUrl: 'https://picsum.photos/seed/picsum2/400/400',
-      ),
-      cantidad: 1,
-    ),
-  ];
-
-  // Calcula el precio total de los artículos en el carrito.
-  double get _precioTotal {
-    return _articulosCarrito.fold(
-      0,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final articulosCarrito = ref.watch(carritoProvider);
+    final precioTotal = articulosCarrito.fold(
+      0.0,
       (sum, item) => sum + (item.producto.precio * item.cantidad),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarComun(),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: _articulosCarrito.length,
+              itemCount: articulosCarrito.length,
               itemBuilder: (context, index) {
-                final item = _articulosCarrito[index];
+                final item = articulosCarrito[index];
                 return ListTile(
-                  leading: Image.network(
-                    item.producto.imagenUrl,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  ),
+                  leading:
+                      (item.producto.imagenUrl != null &&
+                          item.producto.imagenUrl!.isNotEmpty)
+                      ? Image.network(
+                          item.producto.imagenUrl!,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        )
+                      : const Icon(Icons.image_not_supported, size: 50),
                   title: Text(item.producto.nombre),
                   subtitle: Text('Cantidad: ${item.cantidad}'),
                   trailing: Row(
@@ -71,7 +46,9 @@ class _PantallaCarritoState extends State<PantallaCarrito> {
                       IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
                         onPressed: () {
-                          // La lógica para eliminar se implementará en la Fase 2.
+                          ref
+                              .read(carritoProvider.notifier)
+                              .eliminarProducto(item.producto.nombre);
                         },
                       ),
                     ],
@@ -91,7 +68,7 @@ class _PantallaCarritoState extends State<PantallaCarrito> {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 Text(
-                  '\$${_precioTotal.toStringAsFixed(2)}',
+                  '\$${precioTotal.toStringAsFixed(2)}',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],

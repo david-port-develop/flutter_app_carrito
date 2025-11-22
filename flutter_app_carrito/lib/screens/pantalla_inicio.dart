@@ -1,14 +1,16 @@
 import '/data/datos_ejemplo.dart';
+import '/providers/carrito_provider.dart';
 import '/widgets/app_bar_comun.dart';
 import '/widgets/ficha_producto.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Pantalla principal que muestra la lista de productos.
-class PantallaInicio extends StatelessWidget {
+class PantallaInicio extends ConsumerWidget {
   const PantallaInicio({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const AppBarComun(),
       body: GridView.builder(
@@ -25,7 +27,7 @@ class PantallaInicio extends StatelessWidget {
           return FichaProducto(
             producto: producto,
             enAnadirAlCarrito: () {
-              // La lógica para añadir al carrito se implementará en la Fase 2.
+              ref.read(carritoProvider.notifier).agregarProducto(producto);
             },
           );
         },

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1763810744327,
@@ -64,6 +64,10 @@
                 {
                     "date": 1763812148951,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,21 @@\n           Expanded(\n             child: Stack(\n               fit: StackFit.expand,\n               children: [\n-                Image.network(producto.imagenUrl, fit: BoxFit.cover),\n+                // Si la URL de la imagen existe y no está vacía, muéstrala.\n+                if (producto.imagenUrl != null &&\n+                    producto.imagenUrl!.isNotEmpty)\n+                  Image.network(producto.imagenUrl!, fit: BoxFit.cover)\n+                // Si no, muestra un placeholder.\n+                else\n+                  const Center(\n+                    child: Icon(\n+                      Icons.image_not_supported,\n+                      size: 50,\n+                      color: Colors.grey,\n+                    ),\n+                  ),\n                 Positioned(\n                   top: 20,\n                   right: 20,\n                   child: CircleAvatar(\n"
+                },
+                {
+                    "date": 1763815561110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,13 +40,13 @@\n                 Positioned(\n                   top: 20,\n                   right: 20,\n                   child: CircleAvatar(\n-                    radius: 25, // Aumenta el tamaño del círculo\n+                    radius: 25,\n                     backgroundColor: const Color.fromARGB(137, 255, 255, 255),\n                     child: IconButton(\n                       icon: const Icon(\n-                        size: 30, // Aumenta el tamaño del ícono\n+                        size: 30,\n                         Icons.add_shopping_cart,\n                         color: Colors.red,\n                       ),\n                       onPressed: enAnadirAlCarrito,\n@@ -69,9 +69,9 @@\n                 if (producto.descripcion != null &&\n                     producto.descripcion!.isNotEmpty)\n                   Text(\n                     producto\n-                        .descripcion!, // Usamos '!' porque ya comprobamos que no es nulo.\n+                        .descripcion!,\n                     style: Theme.of(context).textTheme.bodySmall,\n                     maxLines: 2,\n                     overflow: TextOverflow.ellipsis,\n                   ),\n"
                 }
             ],
             "date": 1763810744327,

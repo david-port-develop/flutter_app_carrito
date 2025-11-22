@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../providers/carrito_provider.dart';
 
 // Un AppBar reutilizable para mantener la consistencia en la app.
-class AppBarComun extends StatelessWidget implements PreferredSizeWidget {
+class AppBarComun extends ConsumerWidget implements PreferredSizeWidget {
   const AppBarComun({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final articulosCarrito = ref.watch(carritoProvider);
+    final totalArticulos = articulosCarrito.fold(
+      0,
+      (sum, item) => sum + item.cantidad,
+    );
     return AppBar(
       // Evita que aparezca la flecha de 'atrás' automáticamente.
       automaticallyImplyLeading: false,
-      // El título se alinea a la izquierda por defecto.
       title: const Text('Mi Tienda'),
       actions: [
-        // Icono para navegar a la pantalla de inicio.
         IconButton(
           icon: const Icon(Icons.home),
           onPressed: () {
             context.go('/');
           },
         ),
-        // Icono del carrito de compras con un contador.
         IconButton(
           icon: Stack(
             children: [
@@ -37,8 +41,8 @@ class AppBarComun extends StatelessWidget implements PreferredSizeWidget {
                     minWidth: 16,
                     minHeight: 16,
                   ),
-                  child: const Text(
-                    '0',
+                  child: Text(
+                    totalArticulos.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 10),
                     textAlign: TextAlign.center,
                   ),

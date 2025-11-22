@@ -41,11 +41,11 @@ class FichaProducto extends StatelessWidget {
                   top: 20,
                   right: 20,
                   child: CircleAvatar(
-                    radius: 25, // Aumenta el tamaño del círculo
+                    radius: 25,
                     backgroundColor: const Color.fromARGB(137, 255, 255, 255),
                     child: IconButton(
                       icon: const Icon(
-                        size: 30, // Aumenta el tamaño del ícono
+                        size: 30,
                         Icons.add_shopping_cart,
                         color: Colors.red,
                       ),
@@ -69,8 +69,7 @@ class FichaProducto extends StatelessWidget {
                 if (producto.descripcion != null &&
                     producto.descripcion!.isNotEmpty)
                   Text(
-                    producto
-                        .descripcion!, // Usamos '!' porque ya comprobamos que no es nulo.
+                    producto.descripcion!,
                     style: Theme.of(context).textTheme.bodySmall,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

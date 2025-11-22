@@ -1,9 +1,11 @@
 import '/router/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MiTiendaApp());
+  //Se añade ProviderScope para habilitar Riverpod en toda la app
+  runApp(const ProviderScope(child: MiTiendaApp()));
 }
 
 class MiTiendaApp extends StatelessWidget {
@@ -19,9 +21,9 @@ class MiTiendaApp extends StatelessWidget {
   }
 
   ThemeData _buildTheme(BuildContext context) {
-    const primaryColor = Color(0xFF3D5A80); // Azul oscuro
-    const secondaryColor = Color(0xFFEE6C4D); // Naranja coral como acento
-    const backgroundColor = Color(0xFFF4F4F8); // Gris claro para el fondo
+    const primaryColor = Color(0xFF3D5A80);
+    const secondaryColor = Color(0xFFEE6C4D);
+    const backgroundColor = Color(0xFFF4F4F8);
 
     return ThemeData(
       useMaterial3: true,
@@ -31,7 +33,7 @@ class MiTiendaApp extends StatelessWidget {
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
         secondary: secondaryColor,
-        background: backgroundColor,
+        surface: backgroundColor,
         brightness: Brightness.light,
       ),
       // Define la tipografía para toda la app

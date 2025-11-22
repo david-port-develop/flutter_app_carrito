@@ -1,0 +1,18 @@
+{
+    "sourceFile": "flutter_app_carrito/lib/carrito_provider.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1763812733349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1763812733349,
+            "name": "Commit-0",
+            "content": "import 'package:flutter_riverpod/flutter_riverpod.dart';\nimport '../models/articulo_carrito.dart';\nimport '../models/producto.dart';\n\n// 1. Define la clase Notificadora de Estado (StateNotifier)\nclass CarritoNotifier extends StateNotifier<List<ArticuloCarrito>> {\n  // Inicializa el carrito con una lista vacía.\n  CarritoNotifier() : super([]);\n\n  // Método para añadir un producto al carrito.\n  void agregarProducto(Producto producto) {\n    // Busca si el producto ya existe en el carrito.\n    final indice =\n        state.indexWhere((item) => item.producto.nombre == producto.nombre);\n\n    if (indice != -1) {\n      // Si existe, crea una copia del artículo y aumenta su cantidad.\n      final articuloExistente = state[indice];\n      final articuloActualizado = ArticuloCarrito(\n        producto: articuloExistente.producto,\n        cantidad: articuloExistente.cantidad + 1,\n      );\n      // Reemplaza el artículo antiguo por el actualizado en la lista.\n      state = [\n        for (int i = 0; i < state.length; i++)\n          if (i == indice) articuloActualizado else state[i],\n      ];\n    } else {\n      // Si no existe, añade un nuevo artículo al carrito.\n      state = [...state, ArticuloCarrito(producto: producto, cantidad: 1)];\n    }\n  }\n\n  // Método para eliminar un producto del carrito.\n  void eliminarProducto(String nombreProducto) {\n    state = state\n        .where((item) => item.producto.nombre != nombreProducto)\n        .toList();\n  }\n}\n\n// 2. Define el Proveedor (StateNotifierProvider)\n// Este es el proveedor global que expondremos a la UI.\nfinal carritoProvider =\n    StateNotifierProvider<CarritoNotifier, List<ArticuloCarrito>>((ref) {\n  return CarritoNotifier();\n});\n"
+        }
+    ]
+}
