@@ -40,6 +40,41 @@ class CarritoNotifier extends Notifier<List<ArticuloCarrito>> {
         .where((item) => item.producto.nombre != nombreProducto)
         .toList();
   }
+
+  // Método para aumentar la cantidad de un producto.
+  void aumentarCantidad(String nombreProducto) {
+    state = [
+      for (final item in state)
+        if (item.producto.nombre == nombreProducto)
+          ArticuloCarrito(producto: item.producto, cantidad: item.cantidad + 1)
+        else
+          item,
+    ];
+  }
+
+  // Método para disminuir la cantidad de un producto.
+  void disminuirCantidad(String nombreProducto) {
+    final articulo = state.firstWhere(
+      (item) => item.producto.nombre == nombreProducto,
+    );
+
+    // Si la cantidad es 1, eliminar el producto.
+    if (articulo.cantidad == 1) {
+      eliminarProducto(nombreProducto);
+    } else {
+      // Si es mayor a 1, solo reducir la cantidad.
+      state = [
+        for (final item in state)
+          if (item.producto.nombre == nombreProducto)
+            ArticuloCarrito(
+              producto: item.producto,
+              cantidad: item.cantidad - 1,
+            )
+          else
+            item,
+      ];
+    }
+  }
 }
 
 // 2. Define el Proveedor (StateNotifierProvider)

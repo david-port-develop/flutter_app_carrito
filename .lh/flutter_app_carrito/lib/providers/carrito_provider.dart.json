@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1763812885691,
@@ -20,6 +20,10 @@
                 {
                     "date": 1763815194823,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,10 @@\n import 'package:flutter_riverpod/flutter_riverpod.dart';\n import '../models/articulo_carrito.dart';\n import '../models/producto.dart';\n \n-// 1. Define la clase Notificadora de Estado usando el 'Notifier' moderno.\n+//Usamos la clase Notificadora de Estado usando el 'Notifier'\n class CarritoNotifier extends Notifier<List<ArticuloCarrito>> {\n-  // El método 'build' es requerido y debe devolver el estado inicial.\n-  // Es el equivalente al 'super([])' del constructor en StateNotifier.\n   @override\n   List<ArticuloCarrito> build() {\n     return [];\n   }\n"
+                },
+                {
+                    "date": 1763820586372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,45 @@\n     state = state\n         .where((item) => item.producto.nombre != nombreProducto)\n         .toList();\n   }\n+\n+  // Método para aumentar la cantidad de un producto.\n+  void aumentarCantidad(String nombreProducto) {\n+    state = [\n+      for (final item in state)\n+        if (item.producto.nombre == nombreProducto)\n+          ArticuloCarrito(\n+            producto: item.producto,\n+            cantidad: item.cantidad + 1,\n+          )\n+        else\n+          item,\n+    ];\n+  }\n+\n+  // Método para disminuir la cantidad de un producto.\n+  void disminuirCantidad(String nombreProducto) {\n+    final articulo =\n+        state.firstWhere((item) => item.producto.nombre == nombreProducto);\n+\n+    // Si la cantidad es 1, eliminar el producto.\n+    if (articulo.cantidad == 1) {\n+      eliminarProducto(nombreProducto);\n+    } else {\n+      // Si es mayor a 1, solo reducir la cantidad.\n+      state = [\n+        for (final item in state)\n+          if (item.producto.nombre == nombreProducto)\n+            ArticuloCarrito(\n+              producto: item.producto,\n+              cantidad: item.cantidad - 1,\n+            )\n+          else\n+            item,\n+      ];\n+    }\n+  }\n }\n \n // 2. Define el Proveedor (StateNotifierProvider)\n // Se define el proveedor usando 'NotifierProvider'.\n"
                 }
             ],
             "date": 1763812885691,
