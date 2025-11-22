@@ -1,13 +1,15 @@
-// Define el modelo de datos para un producto.
-// Cada producto tiene un nombre, un precio y una URL para su imagen.
+// Cada producto tiene un nombre, un precio, una URL de imagen y una descripción opcional.
 class Producto {
   final String nombre;
   final double precio;
-  final String imagenUrl;
+  final String? imagenUrl; // La URL de la imagen también es opcional
+  final String?
+  descripcion; // La descripción ahora es opcional (puede ser nula)
 
   Producto({
     required this.nombre,
     required this.precio,
-    required this.imagenUrl,
+    this.imagenUrl, // Ya no es 'required'
+    this.descripcion, // Ya no es 'required'
   });
 }

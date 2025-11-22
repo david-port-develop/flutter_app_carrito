@@ -1,5 +1,5 @@
 import '../models/articulo_carrito.dart';
-import '../data/datos_ejemplo.dart';
+import '../models/producto.dart';
 import '../widgets/app_bar_comun.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +14,24 @@ class PantallaCarrito extends StatefulWidget {
 class _PantallaCarritoState extends State<PantallaCarrito> {
   // Datos de ejemplo para el carrito
   final List<ArticuloCarrito> _articulosCarrito = [
-    ArticuloCarrito(producto: productosEjemplo[0], cantidad: 2),
-    ArticuloCarrito(producto: productosEjemplo[1], cantidad: 1),
+    ArticuloCarrito(
+      producto: Producto(
+        nombre: 'Camiseta Clásica',
+        precio: 19.99,
+        descripcion: 'Camiseta de algodón 100% de alta calidad.',
+        imagenUrl: 'https://picsum.photos/seed/picsum1/400/400',
+      ),
+      cantidad: 2,
+    ),
+    ArticuloCarrito(
+      producto: Producto(
+        nombre: 'Vaqueros Slim Fit',
+        precio: 49.99,
+        descripcion: 'Vaqueros modernos y cómodos para cualquier ocasión.',
+        imagenUrl: 'https://picsum.photos/seed/picsum2/400/400',
+      ),
+      cantidad: 1,
+    ),
   ];
 
   // Calcula el precio total de los artículos en el carrito.

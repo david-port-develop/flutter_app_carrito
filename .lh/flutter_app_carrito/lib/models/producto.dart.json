@@ -1,0 +1,26 @@
+{
+    "sourceFile": "flutter_app_carrito/lib/models/producto.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1763811246589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1763812023352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,14 @@\n-// Define el modelo de datos para un producto.\n-// Cada producto tiene un nombre, un precio y una URL para su imagen.\n+// Cada producto tiene un nombre, un precio, una URL de imagen y una descripción opcional.\n class Producto {\n   final String nombre;\n   final double precio;\n   final String imagenUrl;\n-  final String descripcion;\n+  final String? descripcion; // La descripción ahora es opcional (puede ser nula)\n \n   Producto({\n     required this.nombre,\n     required this.precio,\n     required this.imagenUrl,\n-    required this.descripcion,\n+    this.descripcion, // Ya no es 'required'\n   });\n }\n"
+                },
+                {
+                    "date": 1763812137941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,14 @@\n // Cada producto tiene un nombre, un precio, una URL de imagen y una descripción opcional.\n class Producto {\n   final String nombre;\n   final double precio;\n-  final String imagenUrl;\n-  final String?\n-  descripcion; // La descripción ahora es opcional (puede ser nula)\n+  final String? imagenUrl; // La URL de la imagen también es opcional\n+  final String? descripcion; // La descripción ahora es opcional (puede ser nula)\n \n   Producto({\n     required this.nombre,\n     required this.precio,\n-    required this.imagenUrl,\n+    this.imagenUrl, // Ya no es 'required'\n     this.descripcion, // Ya no es 'required'\n   });\n }\n"
+                }
+            ],
+            "date": 1763811246589,
+            "name": "Commit-0",
+            "content": "// Define el modelo de datos para un producto.\n// Cada producto tiene un nombre, un precio y una URL para su imagen.\nclass Producto {\n  final String nombre;\n  final double precio;\n  final String imagenUrl;\n  final String descripcion;\n\n  Producto({\n    required this.nombre,\n    required this.precio,\n    required this.imagenUrl,\n    required this.descripcion,\n  });\n}\n"
+        }
+    ]
+}
